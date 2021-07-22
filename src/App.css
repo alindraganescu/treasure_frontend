@@ -2,15 +2,41 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+.logoCoin {
+  height: 4vmin;
   pointer-events: none;
+}
+
+.image_news {
+  height: 10vmin;
+  
+}
+
+.App-logo {
+  height: 90vmax;
+  pointer-events: none;
+}
+
+#special_button {
+  background-color: #282c34;
+}
+
+.special_button {
+  background-color: #282c34;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+.positive_price_change24 {
+  color:green;
+}
+
+.negative_price_change24 {
+  color:red;
 }
 
 .App-header {
