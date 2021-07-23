@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/Home.css';
 
 const Home = ({ coinData }) => {
-  console.log(coinData);
+  // console.log(coinData);
 
   const beginning = 0;
   const end = 20;

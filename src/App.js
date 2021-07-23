@@ -21,16 +21,16 @@ function App() {
   const [newsPage, setNewsPage] = useState(0);
   const [isLoading, setIsLoading] = useState();
 
-  //https://treasure-backend.herokuapp.com/home
-  // http://localhost:3000/home
+  //`https://treasure-backend.herokuapp.com/home?newsPage=${newsPage}`
+  // `http://localhost:3000/home?newsPage=${newsPage}`
 
   useEffect(() => {
     // setIsLoading(true);
     axios
-      .get(`http://localhost:3000/home?newsPage=${newsPage}`)
+      .get(`https://treasure-backend.herokuapp.com/home?newsPage=${newsPage}`)
       .then((res) => {
         const { coinGeckoData, newsData } = res.data;
-        // console.log({ coinGeckoData });
+        console.log({ coinGeckoData });
         // console.log({ newsData });
         setCoinData(coinGeckoData);
         setNewsData(newsData);
@@ -38,17 +38,14 @@ function App() {
       .catch((error) => console.log(error));
   }, [newsPage]);
 
-  console.log(newsData);
   return (
     <div className="">
       <div className="row">
-        <div className="col s12">
-          <a id="special_button" className="waves-effect waves-light btn">
-            button
-          </a>
-          <a className="waves-effect waves-light btn special_button">
-            <i className="material-icons left">cloud</i>button
-          </a>
+        <div
+          className="col s12 navbar-fixed z-depth-2"
+          style={{ padding: '0' }}
+        >
+          <Header />>
         </div>
 
         <div
@@ -57,7 +54,11 @@ function App() {
         >
           <Switch>
             <Route path="/home/:coin">
-              <Coin />
+              {!coinData ? (
+                <span>Loading...</span>
+              ) : (
+                <Coin coinData={coinData.data} />
+              )}
             </Route>
             <Route path="/home">
               {!coinData ? (
@@ -65,9 +66,6 @@ function App() {
               ) : (
                 <Home coinData={coinData.data} />
               )}
-            </Route>
-            <Route path="/news/:article">
-              <Article />
             </Route>
             <Route path="/news">
               {!newsData ? (

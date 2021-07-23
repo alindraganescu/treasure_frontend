@@ -5,7 +5,7 @@ function preview(string) {
 }
 
 const BigNews = ({ newsData, setNewsPage, newsPage }) => {
-  console.log({ newsData });
+  // console.log({ newsData });
   return (
     <div>
       <h2>Big News Page</h2>
