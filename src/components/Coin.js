@@ -8,7 +8,9 @@ const Coin = ({ coinData }) => {
   const searchedCoin = coinData.find((coinObject) => coinObject.id === coin);
   return (
     <>
-      <h6>Market Cap rank: {searchedCoin.market_cap_rank}</h6>
+      {searchedCoin.market_cap_rank && (
+        <h6>Market Cap rank: {searchedCoin.market_cap_rank}</h6>
+      )}
       <img
         src={searchedCoin.image}
         alt={searchedCoin.name}

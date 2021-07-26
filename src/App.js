@@ -3,7 +3,7 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import { react } from '@babel/types';
 import axios from 'axios';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Home from './components/Home';
 import Alerts from './components/Alerts';
 import Footer from './components/Footer';
@@ -14,12 +14,16 @@ import Wiki from './components/Wiki';
 import Coin from './components/Coin';
 import ShortCoins from './components/ShortCoins';
 import BigNews from './components/BigNews';
+import Register from './components/Register';
 
 function App() {
   const [coinData, setCoinData] = useState();
   const [newsData, setNewsData] = useState();
   const [newsPage, setNewsPage] = useState(0);
   const [isLoading, setIsLoading] = useState();
+  const [credentials, setCredentials] = useState();
+
+  // const handleSetCredentials = (e) => {}
 
   //`https://treasure-backend.herokuapp.com/home?newsPage=${newsPage}`
   // `http://localhost:3000/home?newsPage=${newsPage}`
@@ -45,7 +49,7 @@ function App() {
           className="col s12 navbar-fixed z-depth-2"
           style={{ padding: '0' }}
         >
-          <Header />>
+          <Header />
         </div>
 
         <div
@@ -81,12 +85,16 @@ function App() {
             <Route path="/portfolio">
               <Portfolio />
             </Route>
+            <Route path="/register">
+              <Register />
+            </Route>
             <Route path="/alerts">
               <Alerts />
             </Route>
             <Route path="/wiki">
               <Wiki />
             </Route>
+            <Redirect to="/home" />
           </Switch>
         </div>
 
