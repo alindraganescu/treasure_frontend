@@ -1,3 +1,20 @@
+/* override browser default */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* use viewport-relative units to cover page fully */
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
 }
@@ -9,12 +26,29 @@
 
 .image_news {
   height: 10vmin;
-  
 }
 
-.App-logo {
-  height: 90vmax;
-  pointer-events: none;
+.main-logo {
+  width: 60px;
+  height: 60px;
+}
+
+.main-container {
+  height: 100%;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.left-container {
+  height: 100%;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.right-container {
+  height: 100%;
+  width: 100%;
+  min-height: 100vh;
 }
 
 #special_button {
@@ -25,12 +59,6 @@
   background-color: #282c34;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .positive_price_change24 {
   color:green;
 }
@@ -39,26 +67,4 @@
   color:red;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

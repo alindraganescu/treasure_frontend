@@ -19,7 +19,7 @@ const Coin = ({ coinData }) => {
       <h5>
         {searchedCoin.name} ({searchedCoin.symbol.toUpperCase()})
       </h5>
-      <table class="striped">
+      <table className="striped">
         <tbody>
           <tr>
             <td>Current price:</td>

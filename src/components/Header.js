@@ -1,20 +1,22 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import '../styles/Header.css';
+import logo from '../assets/treasure_logo.png';
 
 const Header = () => {
   return (
     <>
       <nav style={{ backgroundColor: '#065471', color: '#FFC045' }}>
-        <div class="nav-wrapper">
+        <div className="nav-wrapper">
           <img
-            src="../public/treasure_logo"
+            src={logo}
+            className="main-logo"
             alt="company logo"
             // className="brand-logo"
             // style={{ paddingLeft: '5rem' }}
           />
 
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li>
               <NavLink to="/home">Home</NavLink>
             </li>

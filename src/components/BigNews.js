@@ -48,7 +48,7 @@ const BigNews = ({ newsData, setNewsPage, newsPage }) => {
           className="waves-effect waves-light btn"
           onClick={() => setNewsPage(newsData.nextPage)}
         >
-          <i class="material-icons left">navigate_next</i>Next
+          <i className="material-icons left">navigate_next</i>Next
         </a>
       )}
     </div>

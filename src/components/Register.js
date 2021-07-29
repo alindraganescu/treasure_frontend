@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Register = () => {
+const Register = ({ onAuth, onSetCredentials }) => {
   return (
     <>
       <h3>Register Page</h3>
@@ -8,19 +8,34 @@ const Register = () => {
         <form className="col s12">
           <div className="row">
             <div className="input-field col s6">
-              <input id="username" type="text" className="validate" />
+              <input
+                id="username"
+                type="text"
+                className="validate"
+                onChange={(e) => onSetCredentials(e)}
+              />
               <label for="username">Username</label>
             </div>
           </div>
           <div className="row">
             <div className="input-field col s6">
-              <input id="password" type="password" className="validate" />
+              <input
+                id="password"
+                type="password"
+                className="validate"
+                onChange={(e) => onSetCredentials(e)}
+              />
               <label for="password">Password</label>
             </div>
           </div>
           <div className="row">
             <div className="input-field col s6">
-              <input id="email" type="email" className="validate" />
+              <input
+                id="email"
+                type="email"
+                className="validate"
+                onChange={(e) => onSetCredentials(e)}
+              />
               <label for="email">Email</label>
             </div>
           </div>
@@ -29,6 +44,7 @@ const Register = () => {
           className="btn waves-effect waves-light"
           type="submit"
           name="action"
+          onClick={() => onAuth()}
         >
           Submit
           <i class="material-icons right">send</i>
