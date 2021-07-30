@@ -7,8 +7,8 @@ const ShortCoins = ({ coinData }) => {
   const end = 20;
 
   return (
-    <div className="">
-      <h2>Coins Small List</h2>
+    <div className="z-depth-2">
+      <h4>Cryptocurrency Prices by Market Cap</h4>
       <table className="striped">
         <thead>
           <tr>

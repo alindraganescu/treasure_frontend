@@ -3,7 +3,9 @@ html,
 body {
   margin: 0;
   padding: 0;
-}
+  background-color: #065471;
+  color: #FFC045;
+  }
 
 /* use viewport-relative units to cover page fully */
 body {
@@ -52,19 +54,19 @@ body {
 }
 
 #special_button {
-  background-color: rgb(146, 141, 141);
+  background-color: whitesmoke;
 }
 
-.special_button {
+/* .special_button {
   background-color: #282c34;
-}
+} */
 
 .positive_price_change24 {
-  color:green;
+  color:rgb(46, 250, 46);
 }
 
 .negative_price_change24 {
-  color:red;
+  color:rgb(255, 48, 48);
 }
 
 

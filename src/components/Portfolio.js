@@ -5,7 +5,7 @@ import M from 'materialize-css';
 const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
   const selectRef = useRef();
 
-  console.log(userData);
+  // console.log(userData);
 
   const [portfolioData, setPortfolioData] = useState({
     cryptocurrency: '',
@@ -52,7 +52,7 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
 
   return (
     <>
-      <h3>Portfolio Page</h3>
+      <h4>Portfolio Page</h4>
       <div className="row">
         <div className="col s12">
           {userData &&
@@ -69,14 +69,15 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
       <div className="row">
         <form onSubmit={submit} className="col s12">
           <div className="row">
-            <div class="input-field col s12">
+            <div class="input-field col s6">
               <select
+                className="browser-default"
                 ref={selectRef}
                 onChange={handleChange}
                 name="cryptocurrency"
               >
                 <option value="" disabled selected>
-                  Choose your option
+                  Choose coin
                 </option>
                 {coinData &&
                   coinData.map((coin) => {
@@ -87,9 +88,10 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
                     );
                   })}
               </select>
-              <label>Materialize Select</label>
+              {/* <label>Materialize Select</label> */}
             </div>
           </div>
+
           <div className="row">
             <div className=" col s6">
               <input
@@ -98,7 +100,7 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
                 name="quantity"
                 type="number"
                 min={0}
-                step={0.1}
+                step={0.0000000001}
                 required
                 className="validate"
               />

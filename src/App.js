@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './App.css';
+import './styles/App.css';
 import React, { useState, useEffect, useCallback } from 'react';
 import { react } from '@babel/types';
 import axios from 'axios';
@@ -24,17 +24,17 @@ function App() {
   const [isLoading, setIsLoading] = useState();
   const [userData, setUserData] = useState();
   const [credentials, setCredentials] = useState();
-  const [backgroundColor, setBackgroundColor] = useState('#FFC045');
+  // const [backgroundColor, setBackgroundColor] = useState('#FFC045');
 
   const { pathname } = useLocation();
 
-  useEffect(() => {
-    if (pathname === '/home' || pathname === '/news') {
-      setBackgroundColor('#FFC045');
-    } else {
-      setBackgroundColor('#065471');
-    }
-  }, [pathname]);
+  // useEffect(() => {
+  //   if (pathname === '/home' || pathname === '/news') {
+  //     setBackgroundColor('#FFC045');
+  //   } else {
+  //     setBackgroundColor('#065471');
+  //   }
+  // }, [pathname]);
 
   const handleSetCredentials = (e) => {
     setCredentials((prevCredentials) => ({
@@ -49,6 +49,7 @@ function App() {
 
   //`https://treasure-backend.herokuapp.com/home?newsPage=${newsPage}`
   // `http://localhost:3000/home?newsPage=${newsPage}`
+  // `https://treasure-backend.herokuapp.com/receive-alert`
 
   useEffect(() => {
     // setIsLoading(true);
@@ -87,7 +88,7 @@ function App() {
   return (
     <div
       className="main-container"
-      style={{ backgroundColor: backgroundColor }}
+      // style={{ backgroundColor: backgroundColor }}
     >
       <div className="row">
         <div
@@ -99,7 +100,7 @@ function App() {
 
         <div
           className="col s12 m8 l9 left-container"
-          style={{ backgroundColor: '#065471', color: '#FFC045' }}
+          // style={{ backgroundColor: '#065471', color: '#FFC045' }}
         >
           <Switch>
             <Route path="/home/:coin">
@@ -145,7 +146,15 @@ function App() {
               />
             </Route>
             <Route path="/alerts">
-              <Alerts />
+              {!coinData ? (
+                <span>Loading...</span>
+              ) : (
+                <Alerts
+                  coinData={coinData.data}
+                  userData={userData}
+                  onRefreshUserData={getUserData}
+                />
+              )}
             </Route>
             <Route path="/wiki">
               <Wiki />
@@ -155,10 +164,10 @@ function App() {
         </div>
 
         <div
-          className="col s12 m4 l3 right-container"
+          className="col s12 m4 l3 right-container "
           style={{
-            backgroundColor: '#FFC045',
-            color: '#065471',
+            backgroundColor: '#065471',
+            color: '#FFC045',
             fontSize: '0.6rem',
           }}
         >

@@ -6,7 +6,13 @@ import logo from '../assets/treasure_logo.png';
 const Header = () => {
   return (
     <>
-      <nav style={{ backgroundColor: '#065471', color: '#FFC045' }}>
+      <nav
+        style={{
+          backgroundColor: '#065471',
+          color: '#FFC045',
+          height: '70px',
+        }}
+      >
         <div className="nav-wrapper">
           <img
             src={logo}
@@ -27,18 +33,19 @@ const Header = () => {
               <NavLink to="/portfolio">Portfolio</NavLink>
             </li>
             <li>
-              <NavLink to="/wiki">Wiki</NavLink>
+              <NavLink to="/alerts">Alerts</NavLink>
             </li>
             <li>
-              <NavLink to="/alerts">Alerts</NavLink>
+              <NavLink to="/wiki">Wiki</NavLink>
             </li>
             <li>
               <NavLink
                 to="/register"
-                className="waves-effect waves-light btn"
+                className="waves-effect waves-light btn z-depth-2"
                 id="special_button"
               >
-                <i className="material-icons left">account_circle</i>Account
+                <i className="material-icons left">account_circle</i>
+                Account
               </NavLink>
             </li>
           </ul>
@@ -50,12 +57,3 @@ const Header = () => {
 };
 
 export default Header;
-
-{
-  /* <a id="special_button" className="waves-effect waves-light btn">
-            button
-          </a>
-          <a className="waves-effect waves-light btn special_button">
-            <i className="material-icons left">cloud</i>button
-          </a> */
-}

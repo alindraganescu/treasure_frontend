@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import '../styles/Home.css';
 
 const Home = ({ coinData }) => {
@@ -8,10 +9,10 @@ const Home = ({ coinData }) => {
   const end = 20;
 
   return (
-    <div className="">
-      <h2>Coins List</h2>
+    <div className="z-depth-3">
+      <h4>Cryptocurrency Prices by Market Cap</h4>
 
-      <table class="striped">
+      <table class="striped centered">
         <thead>
           <tr>
             <th>Position</th>
@@ -37,7 +38,9 @@ const Home = ({ coinData }) => {
                       className="logoCoin"
                     />
                   </td>
-                  <td>{coin.name}</td>
+                  <td>
+                    <NavLink to="/wiki">{coin.name}</NavLink>
+                  </td>
                   <td>{coin.symbol.toUpperCase()}</td>
                   <td>${coin.current_price.toLocaleString()}</td>
                   {coin.price_change_percentage_24h > 0 ? (
