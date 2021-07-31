@@ -31,7 +31,7 @@ const SmallNews = ({ newsData }) => {
               >
                 Link to article
               </a>
-              &emsp; Date:&emsp;{article.pubDate}
+              &emsp; Date: {article.pubDate}
             </p>
           </div>
         );

@@ -3,7 +3,7 @@ import '../styles/Wiki.css';
 
 const Wiki = () => {
   return (
-    <div className="z-depth-2">
+    <div className="z-depth-2" id="wiki">
       <h5>RESOURCES LIST:</h5>
 
       <table class="striped">
