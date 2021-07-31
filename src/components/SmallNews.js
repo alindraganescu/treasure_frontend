@@ -1,9 +1,10 @@
 import React from 'react';
+import '../styles/SmallNews.css';
 
-const News = ({ newsData }) => {
+const SmallNews = ({ newsData }) => {
   // console.log(newsData);
   return (
-    <div className="z-depth-3">
+    <div className="z-depth-3 small-news">
       <h4>Cryptocurrency News:</h4>
 
       {newsData.map((article, index) => {
@@ -22,7 +23,12 @@ const News = ({ newsData }) => {
             <p>
               Source: {article.source_id}
               :&emsp;
-              <a href={article.link} rel="noreferrer" target="_blank">
+              <a
+                href={article.link}
+                className="small-news-link"
+                rel="noreferrer"
+                target="_blank"
+              >
                 Link to article
               </a>
               &emsp; Date:&emsp;{article.pubDate}
@@ -34,4 +40,4 @@ const News = ({ newsData }) => {
   );
 };
 
-export default News;
+export default SmallNews;

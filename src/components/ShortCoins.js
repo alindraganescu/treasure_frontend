@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/ShortCoins.css';
 
 const ShortCoins = ({ coinData }) => {
   // console.log(coinData);
@@ -7,9 +8,9 @@ const ShortCoins = ({ coinData }) => {
   const end = 20;
 
   return (
-    <div className="z-depth-2">
+    <div className="z-depth-2 short-coins">
       <h4>Cryptocurrency Prices by Market Cap</h4>
-      <table className="striped">
+      <table className="striped centered">
         <thead>
           <tr>
             <th>Position</th>

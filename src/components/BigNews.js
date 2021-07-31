@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/BigNews.css';
 
 function preview(string) {
   return string.split(' ').slice(0, 80).join(' ');
@@ -19,10 +20,10 @@ const BigNews = ({ newsData, setNewsPage, newsPage }) => {
                 className="image_news"
               />
             )}
-            <p>
+            <h6>
               {index + 1}.&emsp;{article.title}
-            </p>
-            <p>{preview(article.description)}...</p>
+            </h6>
+            <p className="flow-text text">{preview(article.description)}...</p>
             <p>
               Source: {article.source_id}
               :&emsp;

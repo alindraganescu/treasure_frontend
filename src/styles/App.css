@@ -21,6 +21,8 @@ body {
   text-align: center;
 }
 
+
+
 .logoCoin {
   height: 4vmin;
   pointer-events: none;
@@ -45,21 +47,19 @@ body {
   height: 100%;
   width: 100%;
   min-height: 100vh;
+  
 }
 
 .right-container {
   height: 100%;
   width: 100%;
   min-height: 100vh;
+  
 }
 
 #special_button {
   background-color: whitesmoke;
 }
-
-/* .special_button {
-  background-color: #282c34;
-} */
 
 .positive_price_change24 {
   color:rgb(46, 250, 46);

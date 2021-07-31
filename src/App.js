@@ -8,7 +8,7 @@ import Home from './components/Home';
 import Alerts from './components/Alerts';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import News from './components/News';
+import SmallNews from './components/SmallNews';
 import Portfolio from './components/Portfolio';
 import Wiki from './components/Wiki';
 import Coin from './components/Coin';
@@ -90,16 +90,13 @@ function App() {
       className="main-container"
       // style={{ backgroundColor: backgroundColor }}
     >
+      <div className="col s12 navbar-fixed z-depth-2" style={{ padding: '0' }}>
+        <Header />
+      </div>
+
       <div className="row">
         <div
-          className="col s12 navbar-fixed z-depth-2"
-          style={{ padding: '0' }}
-        >
-          <Header />
-        </div>
-
-        <div
-          className="col s12 m8 l9 left-container"
+          className="col s12 m8 l8 left-container"
           // style={{ backgroundColor: '#065471', color: '#FFC045' }}
         >
           <Switch>
@@ -164,11 +161,11 @@ function App() {
         </div>
 
         <div
-          className="col s12 m4 l3 right-container "
+          className="col s12 m4 l4 right-container "
           style={{
             backgroundColor: '#065471',
             color: '#FFC045',
-            fontSize: '0.6rem',
+            fontSize: '0.8rem',
           }}
         >
           <Switch>
@@ -176,7 +173,7 @@ function App() {
               {!newsData ? (
                 <span>Loading...</span>
               ) : (
-                <News newsData={newsData.results} />
+                <SmallNews newsData={newsData.results} />
               )}
             </Route>
             <Route path="/*">

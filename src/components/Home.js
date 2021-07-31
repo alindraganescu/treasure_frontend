@@ -39,7 +39,7 @@ const Home = ({ coinData }) => {
                     />
                   </td>
                   <td>
-                    <NavLink to="/wiki">{coin.name}</NavLink>
+                    <NavLink to={`/home/${coin.id}`}>{coin.name}</NavLink>
                   </td>
                   <td>{coin.symbol.toUpperCase()}</td>
                   <td>${coin.current_price.toLocaleString()}</td>

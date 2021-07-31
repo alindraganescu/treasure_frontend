@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 const Coin = ({ coinData }) => {
   const { coin } = useParams();
-  // console.log(coinData);
+  console.log(coinData);
   // console.log(coin);
   const searchedCoin = coinData.find((coinObject) => coinObject.id === coin);
   return (
