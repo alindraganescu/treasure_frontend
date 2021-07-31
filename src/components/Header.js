@@ -23,19 +23,19 @@ const Header = () => {
           />
 
           <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <li>
+            <li className="small-shadow">
               <NavLink to="/home">Home</NavLink>
             </li>
-            <li>
+            <li className="small-shadow">
               <NavLink to="/news">News</NavLink>
             </li>
-            <li>
+            <li className="small-shadow">
               <NavLink to="/portfolio">Portfolio</NavLink>
             </li>
-            <li>
+            <li className="small-shadow">
               <NavLink to="/alerts">Alerts</NavLink>
             </li>
-            <li>
+            <li className="small-shadow">
               <NavLink to="/wiki">Wiki</NavLink>
             </li>
             <li>

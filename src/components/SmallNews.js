@@ -4,8 +4,8 @@ import '../styles/SmallNews.css';
 const SmallNews = ({ newsData }) => {
   // console.log(newsData);
   return (
-    <div className="z-depth-3 small-news">
-      <h4>Cryptocurrency News:</h4>
+    <div className="z-depth-2 small-news">
+      <h5>Cryptocurrency News:</h5>
 
       {newsData.map((article, index) => {
         return (
@@ -25,7 +25,7 @@ const SmallNews = ({ newsData }) => {
               :&emsp;
               <a
                 href={article.link}
-                className="small-news-link"
+                className="news-link"
                 rel="noreferrer"
                 target="_blank"
               >

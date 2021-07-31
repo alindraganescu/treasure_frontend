@@ -1,3 +1,10 @@
 .short-coins {
   padding: 10px;
 }
+
+#rows-data td {
+  padding-top: 6px;
+  padding-right: 5px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+}

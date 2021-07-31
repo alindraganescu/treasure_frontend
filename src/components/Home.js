@@ -9,8 +9,8 @@ const Home = ({ coinData }) => {
   const end = 20;
 
   return (
-    <div className="z-depth-3">
-      <h4>Cryptocurrency Prices by Market Cap</h4>
+    <div className="z-depth-2">
+      <h5>CRYPTOCURRENCY PRICES BY MARKET CAP:</h5>
 
       <table class="striped centered">
         <thead>
@@ -38,7 +38,7 @@ const Home = ({ coinData }) => {
                       className="logoCoin"
                     />
                   </td>
-                  <td>
+                  <td className="small-shadow">
                     <NavLink to={`/home/${coin.id}`}>{coin.name}</NavLink>
                   </td>
                   <td>{coin.symbol.toUpperCase()}</td>

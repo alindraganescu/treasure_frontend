@@ -7,9 +7,9 @@ const Coin = ({ coinData }) => {
   // console.log(coin);
   const searchedCoin = coinData.find((coinObject) => coinObject.id === coin);
   return (
-    <>
+    <div className="z-depth-2">
       {searchedCoin.market_cap_rank && (
-        <h6>Market Cap rank: {searchedCoin.market_cap_rank}</h6>
+        <h5>Market Cap rank: {searchedCoin.market_cap_rank}</h5>
       )}
       <img
         src={searchedCoin.image}
@@ -19,7 +19,7 @@ const Coin = ({ coinData }) => {
       <h5>
         {searchedCoin.name} ({searchedCoin.symbol.toUpperCase()})
       </h5>
-      <table className="striped">
+      <table className="striped centered">
         <tbody>
           <tr>
             <td>Current price:</td>
@@ -107,7 +107,7 @@ const Coin = ({ coinData }) => {
           )}
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 

@@ -52,7 +52,7 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
 
   return (
     <>
-      <h4>Portfolio Page</h4>
+      <h5>YOUR PORTFOLIO:</h5>
       <div className="row">
         <div className="col s12">
           {userData &&
