@@ -1,3 +1,7 @@
 .text {
   font-size: 1rem;
 }
+
+.news-link {
+  color: rgb(46, 250, 46)
+}

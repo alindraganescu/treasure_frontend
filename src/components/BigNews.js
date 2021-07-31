@@ -8,8 +8,8 @@ function preview(string) {
 const BigNews = ({ newsData, setNewsPage, newsPage }) => {
   // console.log({ newsData });
   return (
-    <div className="z-depth-3">
-      <h4>Cryptocurrency News:</h4>
+    <div className="z-depth-2">
+      <h5>CRYPTOCURRENCY NEWS:</h5>
       {newsData.results.map((article, index) => {
         return (
           <div key={index}>
@@ -27,10 +27,15 @@ const BigNews = ({ newsData, setNewsPage, newsPage }) => {
             <p>
               Source: {article.source_id}
               :&emsp;
-              <a href={article.link} rel="noreferrer" target="_blank">
+              <a
+                className="news-link"
+                href={article.link}
+                rel="noreferrer"
+                target="_blank"
+              >
                 Link to article
               </a>
-              &emsp; Date:&emsp;{article.pubDate}
+              &emsp; Date: {article.pubDate}
             </p>
           </div>
         );

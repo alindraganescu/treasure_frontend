@@ -3,7 +3,7 @@ import React from 'react';
 const Register = ({ onAuth, onSetCredentials }) => {
   return (
     <>
-      <h4>Register Page</h4>
+      <h4>REGISTER PAGE:</h4>
       <div className="row">
         <form className="col s12">
           <div className="row">

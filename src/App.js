@@ -102,21 +102,27 @@ function App() {
           <Switch>
             <Route path="/home/:coin">
               {!coinData ? (
-                <span>Loading...</span>
+                <div class="progress">
+                  <div class="indeterminate"></div>
+                </div>
               ) : (
                 <Coin coinData={coinData.data} />
               )}
             </Route>
             <Route path="/home">
               {!coinData ? (
-                <span>Loading...</span>
+                <div class="progress">
+                  <div class="indeterminate"></div>
+                </div>
               ) : (
                 <Home coinData={coinData.data} />
               )}
             </Route>
             <Route path="/news">
               {!newsData ? (
-                <span>Loading...</span>
+                <div class="progress">
+                  <div class="indeterminate"></div>
+                </div>
               ) : (
                 <BigNews
                   newsData={newsData}
@@ -127,7 +133,9 @@ function App() {
             </Route>
             <Route path="/portfolio">
               {!coinData ? (
-                <span>Loading...</span>
+                <div class="progress">
+                  <div class="indeterminate"></div>
+                </div>
               ) : (
                 <Portfolio
                   coinData={coinData.data}
@@ -144,7 +152,9 @@ function App() {
             </Route>
             <Route path="/alerts">
               {!coinData ? (
-                <span>Loading...</span>
+                <div class="progress">
+                  <div class="indeterminate"></div>
+                </div>
               ) : (
                 <Alerts
                   coinData={coinData.data}
@@ -171,19 +181,27 @@ function App() {
           <Switch>
             <Route path="/home">
               {!newsData ? (
-                <span>Loading...</span>
+                <div class="progress">
+                  <div class="indeterminate"></div>
+                </div>
               ) : (
                 <SmallNews newsData={newsData.results} />
               )}
             </Route>
             <Route path="/*">
               {!coinData ? (
-                <span>Loading...</span>
+                <div class="progress">
+                  <div class="indeterminate"></div>
+                </div>
               ) : (
                 <ShortCoins coinData={coinData.data} />
               )}
             </Route>
           </Switch>
+        </div>
+
+        <div className="col s12 z-depth-2" style={{ padding: '0' }}>
+          <Footer />
         </div>
       </div>
     </div>

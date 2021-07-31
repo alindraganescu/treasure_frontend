@@ -4,7 +4,7 @@ import '../styles/Wiki.css';
 const Wiki = () => {
   return (
     <div className="z-depth-2">
-      <h4>Resources List</h4>
+      <h5>RESOURCES LIST:</h5>
 
       <table class="striped">
         <tbody>
@@ -86,7 +86,7 @@ const Wiki = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              glassnode
+              Glassnode
             </a>
           </tr>
           <tr>

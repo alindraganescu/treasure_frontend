@@ -54,7 +54,7 @@ const Alerts = ({ coinData, onRefreshUserData, userData }) => {
 
   return (
     <>
-      <h4>Alerts Page</h4>
+      <h5>YOUR ALERTS:</h5>
       {/* //Display section */}
       {userData && userData.alerts.length !== 0 && (
         <h5>Your current alerts are:</h5>

@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/ShortCoins.css';
+import { NavLink } from 'react-router-dom';
 
 const ShortCoins = ({ coinData }) => {
   // console.log(coinData);
@@ -9,8 +10,8 @@ const ShortCoins = ({ coinData }) => {
 
   return (
     <div className="z-depth-2 short-coins">
-      <h4>Cryptocurrency Prices by Market Cap</h4>
-      <table className="striped centered">
+      <h5>Prices by Market Cap:</h5>
+      <table className="striped centered" id="rows-data">
         <thead>
           <tr>
             <th>Position</th>
@@ -33,7 +34,9 @@ const ShortCoins = ({ coinData }) => {
                       className="logoCoin"
                     />
                   </td>
-                  <td>{coin.name}</td>
+                  <td className="small-shadow">
+                    <NavLink to={`/home/${coin.id}`}>{coin.name}</NavLink>
+                  </td>
                   <td> ${coin.current_price.toLocaleString()} </td>
                   {coin.price_change_percentage_24h > 0 ? (
                     <td className="positive_price_change24">
