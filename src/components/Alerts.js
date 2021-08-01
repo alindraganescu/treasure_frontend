@@ -55,28 +55,13 @@ const Alerts = ({ coinData, onRefreshUserData, userData }) => {
   return (
     <div className="z-depth-2" id="alerts">
       <h5>YOUR ALERTS:</h5>
-      {/* //Display section */}
-      {userData && userData.alerts.length !== 0 && <h5>Your active alerts:</h5>}
-      <div className="">
-        <div className="row">
-          <div className="col s12">
-            {userData &&
-              userData.alerts.map((alert) => {
-                return (
-                  <div key={alert.coin_id}>
-                    <span>Coin: {alert.coin_id}</span>
-                    <span> - alert value {alert.trigger_value}$&emsp;</span>
-                    <a className="material-icons tiny delete">delete_forever</a>
-                  </div>
-                );
-              })}
-          </div>
-        </div>
 
-        <div className="row">
+      <div className="row">
+        <div className="col s6">
+          <h5>Add an alert:</h5>
           <form onSubmit={submit} className="col s12">
             <div className="row">
-              <div class="input-field col s6">
+              <div class="input-field col s12">
                 <select
                   className="browser-default"
                   ref={selectRef}
@@ -116,6 +101,44 @@ const Alerts = ({ coinData, onRefreshUserData, userData }) => {
               <i class="material-icons">add</i>
             </button>
           </form>
+        </div>
+
+        <div className="col s6">
+          {userData && userData.alerts.length !== 0 && (
+            <h5>Your active alerts:</h5>
+          )}
+
+          <table class="centered" id="rows-alerts">
+            <thead>
+              <tr>
+                <th>Coin</th>
+                <th>Trigger Value</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {userData &&
+                userData.alerts.map((alert) => {
+                  return (
+                    <>
+                      <tr key={alert.coin_id}>
+                        <td>
+                          {alert.coin_id.charAt(0).toUpperCase() +
+                            alert.coin_id.slice(1)}
+                        </td>
+                        <td>{alert.trigger_value.toLocaleString()}$</td>
+                        <td>
+                          <a className="material-icons tiny delete">
+                            delete_forever
+                          </a>
+                        </td>
+                      </tr>
+                    </>
+                  );
+                })}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

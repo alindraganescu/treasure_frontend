@@ -15,3 +15,27 @@
   padding: 20px;
   margin-top: 30px;
 }
+.parentAlert{
+  display:flex;
+  justify-content: space-between;
+
+}
+.childAlert{
+  display:flex;
+}
+.alertType{
+  min-width:200px;
+}
+
+#rows-alerts td {
+  padding-top: 6px;
+  padding-right: 5px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+}
+
+#alerts {
+  padding: 20px;
+  margin-top: 30px;
+  margin-bottom: 25px;
+}

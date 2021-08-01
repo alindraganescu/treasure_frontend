@@ -3,7 +3,7 @@ import '../styles/ShortCoins.css';
 import { NavLink } from 'react-router-dom';
 
 const ShortCoins = ({ coinData }) => {
-  // console.log(coinData);
+  console.log(coinData);
 
   const beginning = 0;
   const end = 20;
