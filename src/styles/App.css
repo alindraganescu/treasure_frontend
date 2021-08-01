@@ -5,6 +5,7 @@ body {
   padding: 0;
   background-color: #065471;
   color: #FFC045;
+  overflow-x: hidden;
   }
 
 h1, h2, h3, h4, h5 {
