@@ -5,8 +5,17 @@
   height: 70px;
   }
 
-.text {
+.footer-text {
   text-align: center;
-  padding-left: 30px;
+  
   padding-top: 20px;
+}
+
+.footer-parent{
+  display:flex;
+  justify-content: space-around;
+
+}
+.footer-child{
+  display:flex;
 }

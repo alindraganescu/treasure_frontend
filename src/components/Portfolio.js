@@ -54,67 +54,95 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
   return (
     <div className="z-depth-2" id="portfolio">
       <h5>YOUR PORTFOLIO:</h5>
+
       <div className="row">
-        <div className="col s12">
-          {userData &&
-            userData.coins.map((coin) => {
-              return (
-                <div key={coin.coin_id}>
-                  <span>{coin.coin_id}</span>:<span>{coin.quantity}</span>
-                </div>
-              );
-            })}
+        <div className="col s6">
+          <form onSubmit={submit}>
+            <h5>Add a coin for your Portfolio:</h5>
+            <div className="row">
+              <div class="input-field col s12">
+                <select
+                  className="browser-default"
+                  ref={selectRef}
+                  onChange={handleChange}
+                  name="cryptocurrency"
+                >
+                  <option value="" disabled selected>
+                    Choose coin
+                  </option>
+                  {coinData &&
+                    coinData.map((coin) => {
+                      return (
+                        <option key={coin.id} value={coin.id}>
+                          {coin.id}
+                        </option>
+                      );
+                    })}
+                </select>
+                {/* <label>Materialize Select</label> */}
+              </div>
+            </div>
+
+            <div className="row">
+              <div className=" col s6">
+                <input
+                  onChange={handleChange}
+                  value={portfolioData.quantity}
+                  name="quantity"
+                  type="number"
+                  min={0}
+                  step={0.0000000001}
+                  required
+                  className="validate"
+                />
+                <label for="quantity">Quantity</label>
+              </div>
+            </div>
+            <button
+              type="sumbit"
+              className="btn-floating btn-large waves-effect waves-light red"
+            >
+              <i className="material-icons">add</i>
+            </button>
+          </form>
         </div>
-      </div>
 
-      <div className="row">
-        <form onSubmit={submit} className="col s12">
-          <div className="row">
-            <div class="input-field col s6">
-              <select
-                className="browser-default"
-                ref={selectRef}
-                onChange={handleChange}
-                name="cryptocurrency"
-              >
-                <option value="" disabled selected>
-                  Choose coin
-                </option>
-                {coinData &&
-                  coinData.map((coin) => {
-                    return (
-                      <option key={coin.id} value={coin.id}>
-                        {coin.id}
-                      </option>
-                    );
-                  })}
-              </select>
-              {/* <label>Materialize Select</label> */}
-            </div>
-          </div>
+        <div className="col s6">
+          <h5>Your Portfolio:</h5>
 
-          <div className="row">
-            <div className=" col s6">
-              <input
-                onChange={handleChange}
-                value={portfolioData.quantity}
-                name="quantity"
-                type="number"
-                min={0}
-                step={0.0000000001}
-                required
-                className="validate"
-              />
-              <label for="quantity">Quantity</label>
-            </div>
-          </div>
-          <button
-            type="sumbit"
-            className="btn-floating btn-large waves-effect waves-light red"
-          >
-            <i className="material-icons">add</i>
-          </button>
-        </form>
+          <table class="centered" id="rows-alerts">
+            <thead>
+              <tr>
+                <th>Coin</th>
+                <th>Quantity</th>
+                <th>Value</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {userData &&
+                userData.coins.map((coin) => {
+                  return (
+                    <>
+                      <tr key={coin.coin_id}>
+                        <td>
+                          {coin.coin_id.charAt(0).toUpperCase() +
+                            coin.coin_id.slice(1)}
+                        </td>
+                        <td>{coin.quantity.toLocaleString()}</td>
+                        <td>$</td>
+                        <td>
+                          <a className="material-icons tiny delete">
+                            delete_forever
+                          </a>
+                        </td>
+                      </tr>
+                    </>
+                  );
+                })}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

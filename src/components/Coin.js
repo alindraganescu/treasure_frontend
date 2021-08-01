@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import '../styles/Coin.css';
 
 const Coin = ({ coinData }) => {
   const { coin } = useParams();
@@ -7,19 +8,21 @@ const Coin = ({ coinData }) => {
   // console.log(coin);
   const searchedCoin = coinData.find((coinObject) => coinObject.id === coin);
   return (
-    <div className="z-depth-2">
+    <div className="z-depth-2" id="coin">
       {searchedCoin.market_cap_rank && (
-        <h5>Market Cap rank: {searchedCoin.market_cap_rank}</h5>
+        <p className="small-shadow">
+          Market Cap rank: {searchedCoin.market_cap_rank}
+        </p>
       )}
       <img
         src={searchedCoin.image}
         alt={searchedCoin.name}
-        className="logoCoin"
+        className="coin-logoCoin"
       />
       <h5>
         {searchedCoin.name} ({searchedCoin.symbol.toUpperCase()})
       </h5>
-      <table className="striped centered">
+      <table className="striped centered" id="rows-alerts">
         <tbody>
           <tr>
             <td>Current price:</td>

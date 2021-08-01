@@ -1,0 +1,15 @@
+#coin {
+  padding: 20px;
+  margin-top: 30px;
+  margin-bottom: 25px;
+}
+
+.small-shadow {
+  text-shadow: 1px 1px black;
+}
+
+.coin-logoCoin {
+  height: 50px;
+  margin-right: 10px;
+}
+

@@ -6,7 +6,7 @@ const Wiki = () => {
     <div className="z-depth-2" id="wiki">
       <h5>RESOURCES LIST:</h5>
 
-      <table class="striped">
+      <table className="centered">
         <tbody>
           <tr>
             <a
