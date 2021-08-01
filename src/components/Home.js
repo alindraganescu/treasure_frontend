@@ -9,10 +9,10 @@ const Home = ({ coinData }) => {
   const end = 20;
 
   return (
-    <div className="z-depth-2">
+    <div className="z-depth-2" id="big-coins">
       <h5>CRYPTOCURRENCY PRICES BY MARKET CAP:</h5>
 
-      <table class="striped centered">
+      <table class="striped centered ">
         <thead>
           <tr>
             <th>Position</th>

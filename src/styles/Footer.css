@@ -2,5 +2,11 @@
   margin: 0;
   padding: 0;
   background-color: #065471;
-  color: #FFC045;
+  height: 70px;
   }
+
+.text {
+  text-align: center;
+  padding-left: 30px;
+  padding-top: 20px;
+}

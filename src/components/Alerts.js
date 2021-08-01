@@ -53,12 +53,10 @@ const Alerts = ({ coinData, onRefreshUserData, userData }) => {
   }
 
   return (
-    <>
+    <div className="z-depth-2" id="alerts">
       <h5>YOUR ALERTS:</h5>
       {/* //Display section */}
-      {userData && userData.alerts.length !== 0 && (
-        <h5>Your current alerts are:</h5>
-      )}
+      {userData && userData.alerts.length !== 0 && <h5>Your active alerts:</h5>}
       <div className="">
         <div className="row">
           <div className="col s12">
@@ -120,7 +118,7 @@ const Alerts = ({ coinData, onRefreshUserData, userData }) => {
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

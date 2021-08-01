@@ -8,7 +8,7 @@ function preview(string) {
 const BigNews = ({ newsData, setNewsPage, newsPage }) => {
   // console.log({ newsData });
   return (
-    <div className="z-depth-2">
+    <div className="z-depth-2" id="big-news">
       <h5>CRYPTOCURRENCY NEWS:</h5>
       {newsData.results.map((article, index) => {
         return (

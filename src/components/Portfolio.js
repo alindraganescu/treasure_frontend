@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import M from 'materialize-css';
+import '../styles/Portfolio.css';
 
 const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
   const selectRef = useRef();
@@ -51,7 +52,7 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
   }
 
   return (
-    <>
+    <div className="z-depth-2" id="portfolio">
       <h5>YOUR PORTFOLIO:</h5>
       <div className="row">
         <div className="col s12">
@@ -115,7 +116,7 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
           </button>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 
