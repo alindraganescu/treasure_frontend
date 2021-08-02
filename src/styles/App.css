@@ -5,6 +5,7 @@ body {
   padding: 0;
   background-color: #065471;
   color: #FFC045;
+  /* scroll-behavior: smooth; */
   /* overflow-x: hidden; //solution for the right part of the screen which is bigger than the screen itself */
   }
 
@@ -78,6 +79,12 @@ body {
   background-color: whitesmoke;
 }
 
+#white_equal_size_button {
+  background-color: whitesmoke;
+  color: #065471;
+  width: 9rem;
+}
+
 .positive_price_change24 {
   color:rgb(46, 250, 46);
 }
@@ -86,6 +93,13 @@ body {
   color:rgb(255, 48, 48);
 }
 
+.parent-buttons {
+  display:flex;
+  justify-content: center;
+}
 
+.child-buttons {
+  display:flex;
+}
 
 
