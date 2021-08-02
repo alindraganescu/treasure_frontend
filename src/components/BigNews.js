@@ -40,23 +40,33 @@ const BigNews = ({ newsData, setNewsPage, newsPage }) => {
           </div>
         );
       })}
-      {newsPage >= 1 && (
-        <a
-          className="waves-effect waves-light btn"
-          onClick={() => setNewsPage(newsPage - 1)}
-        >
-          <i class="material-icons left">navigate_before</i>Previous
-        </a>
-      )}
 
-      {newsData.nextPage && (
-        <a
-          className="waves-effect waves-light btn"
-          onClick={() => setNewsPage(newsData.nextPage)}
-        >
-          <i className="material-icons left">navigate_next</i>Next
-        </a>
-      )}
+      <div className="row parent-buttons">
+        <div className="child-buttons">
+          {newsPage >= 1 && (
+            <button
+              className="btn z-depth-2"
+              id="white_equal_size_button"
+              onClick={() => setNewsPage(newsPage - 1)}
+            >
+              <i class="material-icons left">navigate_before</i>
+              Previous
+            </button>
+          )}
+        </div>
+        <div className="child-buttons">
+          {newsData.nextPage && (
+            <buton
+              className="btn z-depth-2"
+              id="white_equal_size_button"
+              onClick={() => setNewsPage(newsData.nextPage)}
+            >
+              <i className="material-icons right">navigate_next</i>
+              Next
+            </buton>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

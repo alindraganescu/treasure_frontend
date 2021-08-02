@@ -84,7 +84,7 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
             </div>
 
             <div className="row">
-              <div className=" col s6">
+              <div className="col s6">
                 <input
                   onChange={handleChange}
                   value={portfolioData.quantity}
