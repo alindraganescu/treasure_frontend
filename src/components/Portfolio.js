@@ -139,9 +139,9 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
                 { title: 'Polkadot', value: 35, color: '#6A2135' },
               ]}
 
-              label={(labelRenderProps: LabelRenderProps) =>
-                number | string | React.ReactElement | undefined | null
-  }
+              // label={(labelRenderProps: LabelRenderProps) =>
+              //   number | string | React.ReactElement | undefined | null
+  // }
 
 
 
