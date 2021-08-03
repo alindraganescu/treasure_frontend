@@ -17,7 +17,7 @@ const Footer = () => {
         //   padding: '10px',
         // }}
       >
-        <div className="row footer-text footer-parent small-shadow">
+        <div id="child-footer" className="row footer-text footer-parent small-shadow">
           <div className="footer-child">
             <span className="grey-text text-lighten-4">
               Treasure © {y} Alin Draganescu

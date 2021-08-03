@@ -9,7 +9,7 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
   // console.log(userData);
 
   const [portfolioData, setPortfolioData] = useState({
-    cryptocurrency: '',
+    cryptocurrency: 'bitcoin',
     quantity: '',
   });
 
@@ -36,9 +36,23 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
       }
       e.target.reset();
       setPortfolioData({
-        cryptocurrency: '',
+        cryptocurrency: 'bitcoin',
         quantity: '',
       });
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
+  const deleteCoin = async (coin_id) => {
+    try {
+      await axios.delete(
+        `https://treasure-backend.herokuapp.com/coins/${coin_id}/1`
+      );
+
+      if (true) {
+        onRefreshUserData();
+      }
     } catch (e) {
       console.log(e.message);
     }
@@ -100,7 +114,7 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
             </div>
             <button
               type="sumbit"
-              className="btn-floating btn-large waves-effect waves-light red"
+              className="btn-floating btn-small waves-effect waves-light red"
             >
               <i className="material-icons">add</i>
             </button>
@@ -121,25 +135,31 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
             </thead>
             <tbody>
               {userData &&
-                userData.coins.map((coin) => {
-                  return (
-                    <>
-                      <tr key={coin.coin_id}>
-                        <td>
-                          {coin.coin_id.charAt(0).toUpperCase() +
-                            coin.coin_id.slice(1)}
-                        </td>
-                        <td>{coin.quantity.toLocaleString()}</td>
-                        <td>$</td>
-                        <td>
-                          <a className="material-icons tiny delete">
-                            delete_forever
-                          </a>
-                        </td>
-                      </tr>
-                    </>
-                  );
-                })}
+                userData.coins
+                  .sort((a, b) => b.quantity - a.quantity)
+                  .map((coin) => {
+                    return (
+                      <>
+                        <tr key={coin.coin_id}>
+                          <td>
+                            {coin.coin_id.charAt(0).toUpperCase() +
+                              coin.coin_id.slice(1)}
+                          </td>
+                          <td>{coin.quantity.toLocaleString()}</td>
+                          <td>$</td>
+                          <td>
+                            <span
+                              style={{ cursor: 'pointer' }}
+                              className="material-icons tiny delete"
+                              onClick={() => deleteCoin(coin.coin_id)}
+                            >
+                              delete_forever
+                            </span>
+                          </td>
+                        </tr>
+                      </>
+                    );
+                  })}
             </tbody>
           </table>
         </div>

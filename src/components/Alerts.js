@@ -24,13 +24,19 @@ const Alerts = ({ coinData, onRefreshUserData, userData }) => {
     e.preventDefault();
     try {
       const result = await axios.post(
-        'https://treasure-backend.herokuapp.com/receive-alert',
+        'https://treasure-backend.herokuapp.com/alerts',
         {
+          currency: coinData
+            .find((coin) => coin.id === alertsData.cryptocurrency)
+            .symbol.toUpperCase(),
+          price: alertsData.trigger_value,
+          direction: 'above',
           user_id: 1,
           coin_id: alertsData.cryptocurrency,
-          trigger_value: alertsData.trigger_value,
         }
       );
+
+      console.log(result);
 
       if (true) {
         onRefreshUserData();
@@ -97,7 +103,7 @@ const Alerts = ({ coinData, onRefreshUserData, userData }) => {
                 <label for="quantity">Trigger Value</label>
               </div>
             </div>
-            <button className="btn-floating btn-large waves-effect waves-light red">
+            <button className="btn-floating btn-small waves-effect waves-light red">
               <i class="material-icons">add</i>
             </button>
           </form>
