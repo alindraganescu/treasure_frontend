@@ -1,11 +1,65 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Wiki.css';
+import resources from '../utils/Resources';
+import axios from 'axios';
 
-const Wiki = () => {
+const Wiki = ({ onRefreshUserData, userData }) => {
+  const [wikiData, setWikiData] = useState({
+    link: '',
+    description: ''
+  });
+
+  console.log(userData);
+
+  const submit = async (e) => {
+    e.preventDefault();
+    try {
+      const result = await axios.post(
+        'https://treasure-backend.herokuapp.com/links',
+        {
+          user_id: 1,
+          link: wikiData.link,
+          description: wikiData.description
+        }
+      );
+
+      if (true) {
+        onRefreshUserData();
+      }
+      e.target.reset();
+      setWikiData({
+        link: '',
+        description: ''
+      });
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
+  const deleteLink = async (link_id) => {
+    try {
+      await axios.delete(
+        `https://treasure-backend.herokuapp.com/links/${link_id}/1`
+      );
+
+      if (true) {
+        onRefreshUserData();
+      }
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
+  function handleChange(e) {
+    setWikiData((prevData) => ({
+      ...prevData,
+      [e.target.name]: e.target.value,
+    }));
+  }
+
   return (
     <div className="z-depth-2" id="wiki">
       <h5>RESOURCES LIST:</h5>
-
       <div className="row">
         <div className="col s6">
           <h5>Your crypto resources:</h5>
@@ -18,265 +72,92 @@ const Wiki = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>
-                  <a
-                    href="https://www.coingecko.com/en"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="small-shadow"
-                  >
-                    CoinGecko
-                  </a>
-                </td>
-                <td>Prices</td>
-                <td>
-                  <a className="material-icons tiny delete">delete_forever</a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="https://www.binance.com/en"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="small-shadow"
-                  >
-                    Binance
-                  </a>
-                </td>
-                <td>Exchange</td>
-                <td>
-                  <a className="material-icons tiny delete">delete_forever</a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="https://entethalliance.org/eea-members/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="small-shadow"
-                  >
-                    Ethereum Alliance
-                  </a>
-                </td>
-                <td>Organization</td>
-                <td>
-                  <a className="material-icons tiny delete">delete_forever</a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="https://cryptopanic.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="small-shadow"
-                  >
-                    Crypto Panic
-                  </a>
-                </td>
-                <td>News</td>
-                <td>
-                  <a className="material-icons tiny delete">delete_forever</a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="https://messari.io/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="small-shadow"
-                  >
-                    Messari
-                  </a>
-                </td>
-                <td>Prices</td>
-                <td>
-                  <a className="material-icons tiny delete">delete_forever</a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="https://www.reddit.com/r/CryptoCurrency/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="small-shadow"
-                  >
-                    Reddit - Cryptocurrency News & Discussion
-                  </a>
-                </td>
-                <td>Forum</td>
-                <td>
-                  <a className="material-icons tiny delete">delete_forever</a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="https://coinmarketcap.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="small-shadow"
-                  >
-                    CoinMarketCap
-                  </a>
-                </td>
-                <td>Prices</td>
-                <td>
-                  <a className="material-icons tiny delete">delete_forever</a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="https://www.tradingview.com/markets/cryptocurrencies/prices-all/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="small-shadow"
-                  >
-                    TradingView
-                  </a>
-                </td>
-                <td>Analyse</td>
-                <td>
-                  <a className="material-icons tiny delete">delete_forever</a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="https://glassnode.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="small-shadow"
-                  >
-                    Glassnode
-                  </a>
-                </td>
-                <td>Analyse</td>
-                <td>
-                  <a className="material-icons tiny delete">delete_forever</a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="https://cointrendz.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="small-shadow"
-                  >
-                    CoinTrendz
-                  </a>
-                </td>
-                <td>Alerts</td>
-                <td>
-                  <a className="material-icons tiny delete">delete_forever</a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="https://www.cryptocompare.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="small-shadow"
-                  >
-                    CryptoCompare
-                  </a>
-                </td>
-                <td>Analyse</td>
-                <td>
-                  <a className="material-icons tiny delete">delete_forever</a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="https://bitinfocharts.com/cryptocurrency-charts.html?__cf_chl_jschl_tk__=pmd_b7cfb114480903a3d190ec437e4ac7f98408019c-1627726091-0-gqNtZGzNAeKjcnBszQii"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="small-shadow"
-                  >
-                    BitInfoCharts
-                  </a>
-                </td>
-                <td>Analyse</td>
-                <td>
-                  <a className="material-icons tiny delete">delete_forever</a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="https://icodrops.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="small-shadow"
-                  >
-                    IcoDrops
-                  </a>
-                </td>
-                <td>ICOs</td>
-                <td>
-                  <a className="material-icons tiny delete">delete_forever</a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="https://coinlist.co/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="small-shadow"
-                  >
-                    Coinlist
-                  </a>
-                </td>
-                <td>ICOs</td>
-                <td>
-                  <a className="material-icons tiny delete">delete_forever</a>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <a
-                    href="https://defirate.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="small-shadow"
-                  >
-                    DeFi Rate
-                  </a>
-                </td>
-                <td>DeFi</td>
-                <td>
-                  <a className="material-icons tiny delete">delete_forever</a>
-                </td>
-              </tr>
+              {resources.map((site, index) => {
+                return (
+                  <>
+                    <tr key={index}>
+                      <td>
+                        <a
+                          href={site.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="small-shadow"
+                        >
+                          {site.site}
+                        </a>
+                      </td>
+                      <td>{site.description}</td>
+                      <td>
+                        <span
+                          style={{ cursor: 'pointer' }}
+                          className="material-icons tiny delete"
+                          onClick={() => deleteLink(index)}
+                        >
+                          delete_forever
+                        </span>
+                      </td>
+                    </tr>
+                  </>
+                );
+              })}
+              {userData.links.length && userData.links.map((item) => {
+          return(
+            <>
+            <tr key={item.id}>
+                      <td>
+                        <a
+                          href={item.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="small-shadow"
+                        >
+                          Favourite
+                        </a>
+                      </td>
+                      <td>Favourite</td>
+                      <td>
+                        <span
+                          style={{ cursor: 'pointer' }}
+                          className="material-icons tiny delete"
+                          onClick={() => deleteLink(item.id)}
+                        >
+                          delete_forever
+                        </span>
+                      </td>
+                    </tr>
+            </>
+          )
+        })}
             </tbody>
           </table>
         </div>
 
+     
+
         <div className="col s6">
           <h5>Insert a favourite link:</h5>
-          <input
-            placeholder="Link address"
-            id="first_name"
-            type="text"
-            class="validate"
-          />
-          <button
-            type="sumbit"
-            className="btn-floating btn-large waves-effect waves-light red"
-          >
-            <i className="material-icons">add</i>
-          </button>
+          <form onSubmit={submit}>
+            <input
+              placeholder="Link Address"
+              name="link"
+              type="text"
+              class="validate"
+              onChange={handleChange}
+            />
+            <input
+              placeholder="Name of the Site"
+              name="description"
+              type="text"
+              class="validate"
+              onChange={handleChange}
+            />
+            <button
+              type="sumbit"
+              className="btn-floating btn-small waves-effect waves-light red"
+            >
+              <i className="material-icons">add</i>
+            </button>
+          </form>
         </div>
       </div>
     </div>

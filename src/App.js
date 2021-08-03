@@ -1,7 +1,6 @@
 import logo from './logo.svg';
 import './styles/App.css';
 import React, { useState, useEffect, useCallback } from 'react';
-import { react } from '@babel/types';
 import axios from 'axios';
 import { Route, Switch, Redirect, useLocation } from 'react-router-dom';
 import Home from './components/Home';
@@ -48,13 +47,14 @@ function App() {
   };
 
   //`https://treasure-backend.herokuapp.com/home?newsPage=${newsPage}`
-  // `http://localhost:3000/home?newsPage=${newsPage}`
+  //`https://treasure-backend.herokuapp.com/home?newsPage=${newsPage}`
+  // `http://localhost:3001/home?newsPage=${newsPage}`
   // `https://treasure-backend.herokuapp.com/receive-alert`
 
   useEffect(() => {
     // setIsLoading(true);
     axios
-      .get(`https://treasure-backend.herokuapp.com/home?newsPage=${newsPage}`)
+      .get(`http://localhost:3001/home?newsPage=${newsPage}`)
       .then((res) => {
         const { coinGeckoData, newsData } = res.data;
         console.log({ coinGeckoData });
@@ -164,7 +164,13 @@ function App() {
               )}
             </Route>
             <Route path="/wiki">
-              <Wiki />
+              {!userData ? (
+                <div class="progress">
+                  <div class="indeterminate"></div>
+                </div>
+              ) : (
+                <Wiki userData={userData} onRefreshUserData={getUserData} />
+              )}
             </Route>
             <Redirect to="/home" />
           </Switch>
@@ -179,6 +185,15 @@ function App() {
           }}
         >
           <Switch>
+            <Route path="/home/:coin">
+              {!coinData ? (
+                <div class="progress">
+                  <div class="indeterminate"></div>
+                </div>
+              ) : (
+                <ShortCoins coinData={coinData.data} />
+              )}
+            </Route>
             <Route path="/home">
               {!newsData ? (
                 <div class="progress">

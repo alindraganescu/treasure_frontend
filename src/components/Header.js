@@ -10,10 +10,11 @@ const Header = () => {
         style={{
           backgroundColor: '#065471',
           color: '#FFC045',
-          height: '70px',
+          // height: '70px',
         }}
       >
         <div className="nav-wrapper">
+        {/* <div> */}
           <img
             src={logo}
             className="main-logo"
@@ -21,7 +22,8 @@ const Header = () => {
             // className="brand-logo"
             // style={{ paddingLeft: '5rem' }}
           />
-
+        {/* </div> */}
+        {/* <div> */}
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li className="small-shadow">
               <NavLink to="/home">Home</NavLink>
@@ -49,9 +51,9 @@ const Header = () => {
               </NavLink>
             </li>
           </ul>
+        {/* </div> */}
         </div>
       </nav>
-      ;
     </>
   );
 };

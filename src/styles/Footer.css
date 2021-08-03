@@ -3,19 +3,26 @@
   padding: 0;
   background-color: #065471;
   height: 70px;
-  }
+
+}
+
+#child-footer {
+  margin-right: 0px;
+  margin-left: 0px;
+}
 
 .footer-text {
   text-align: center;
-  
+
   padding-top: 20px;
 }
 
-.footer-parent{
-  display:flex;
+.footer-parent {
+  display: flex;
   justify-content: space-around;
 
 }
-.footer-child{
-  display:flex;
+
+.footer-child {
+  display: flex;
 }

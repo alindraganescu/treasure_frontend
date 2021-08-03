@@ -4,27 +4,25 @@
 
 .delete {
   color: red;
- 
+
 }
 
 .btn-block {
   width: 100%;
 }
 
-#alerts {
-  padding: 20px;
-  margin-top: 30px;
-}
-.parentAlert{
-  display:flex;
+.parentAlert {
+  display: flex;
   justify-content: space-between;
 
 }
-.childAlert{
-  display:flex;
+
+.childAlert {
+  display: flex;
 }
-.alertType{
-  min-width:200px;
+
+.alertType {
+  min-width: 200px;
 }
 
 #rows-alerts td {
@@ -36,6 +34,6 @@
 
 #alerts {
   padding: 20px;
-  margin-top: 30px;
+  margin-top: 25px;
   margin-bottom: 25px;
 }

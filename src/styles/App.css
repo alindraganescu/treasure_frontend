@@ -7,9 +7,13 @@ body {
   color: #FFC045;
   /* scroll-behavior: smooth; */
   /* overflow-x: hidden; //solution for the right part of the screen which is bigger than the screen itself */
-  }
+}
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   text-align: center;
   padding-top: 10px;
   padding-bottom: 15px;
@@ -30,7 +34,7 @@ h6 {
 /* use viewport-relative units to cover page fully */
 body {
   height: 100vh;
-  width: 100vw;
+  /* width: 100vw; */
 }
 
 * {
@@ -65,14 +69,14 @@ body {
   height: 100%;
   width: 100%;
   min-height: 100vh;
-  
+
 }
 
 .right-container {
   height: 100%;
   width: 100%;
   min-height: 100vh;
-  
+
 }
 
 #special_button {
@@ -86,20 +90,18 @@ body {
 }
 
 .positive_price_change24 {
-  color:rgb(46, 250, 46);
+  color: rgb(46, 250, 46);
 }
 
 .negative_price_change24 {
-  color:rgb(255, 48, 48);
+  color: rgb(255, 48, 48);
 }
 
 .parent-buttons {
-  display:flex;
+  display: flex;
   justify-content: center;
 }
 
 .child-buttons {
-  display:flex;
+  display: flex;
 }
-
-
