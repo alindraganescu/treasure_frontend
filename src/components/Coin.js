@@ -5,8 +5,9 @@ import '../styles/Coin.css';
 const Coin = ({ coinData }) => {
   const { coin } = useParams();
   console.log(coinData);
-  // console.log(coin);
+  console.log(coin);
   const searchedCoin = coinData.find((coinObject) => coinObject.id === coin);
+  
   return (
     <div className="z-depth-2" id="coin">
       {searchedCoin.market_cap_rank && (
