@@ -119,7 +119,7 @@ const Alerts = ({ coinData, onRefreshUserData, userData }) => {
               <tr>
                 <th>Coin</th>
                 <th>Trigger Value</th>
-                <th>Delete</th>
+                <th>Action</th>
               </tr>
             </thead>
 

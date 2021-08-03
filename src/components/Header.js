@@ -38,7 +38,7 @@ const Header = () => {
               <NavLink to="/alerts">Alerts</NavLink>
             </li>
             <li className="small-shadow">
-              <NavLink to="/wiki">Wiki</NavLink>
+              <NavLink to="/wiki">Resources</NavLink>
             </li>
             <li>
               <NavLink

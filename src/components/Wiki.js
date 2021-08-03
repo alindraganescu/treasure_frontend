@@ -68,7 +68,7 @@ const Wiki = ({ onRefreshUserData, userData }) => {
               <tr>
                 <th>Site</th>
                 <th>Description</th>
-                <th>Delete</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -89,18 +89,18 @@ const Wiki = ({ onRefreshUserData, userData }) => {
                       <td>{site.description}</td>
                       <td>
                         <span
-                          style={{ cursor: 'pointer' }}
+                          
                           className="material-icons tiny delete"
-                          onClick={() => deleteLink(index)}
+                          
                         >
-                          delete_forever
+                          block
                         </span>
                       </td>
                     </tr>
                   </>
                 );
               })}
-              {userData.links.length && userData.links.map((item) => {
+              {userData.links && userData.links.map((item) => {
           return(
             <>
             <tr key={item.id}>
@@ -111,7 +111,7 @@ const Wiki = ({ onRefreshUserData, userData }) => {
                           rel="noopener noreferrer"
                           className="small-shadow"
                         >
-                          Favourite
+                          {item.description}
                         </a>
                       </td>
                       <td>Favourite</td>

@@ -2,11 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import M from 'materialize-css';
 import '../styles/Portfolio.css';
+import { PieChart } from 'react-minimal-pie-chart';
 
 const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
   const selectRef = useRef();
 
-  // console.log(userData);
+  console.log(userData);
 
   const [portfolioData, setPortfolioData] = useState({
     cryptocurrency: 'bitcoin',
@@ -64,6 +65,13 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
       [e.target.name]: e.target.value,
     }));
   }
+
+  function coinInPortfolio(coinInDatabase) {
+    let nameOfCoin = coinData.find((coin) => coin.id === coinInDatabase);
+    return nameOfCoin.current_price
+  }
+
+    // console.log(coinInPortfolio('bitcoin'));
 
   return (
     <div className="z-depth-2" id="portfolio">
@@ -124,19 +132,36 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
         <div className="col s6">
           <h5>Your Portfolio:</h5>
 
+          <PieChart
+              data={[
+                { title: 'Bitcoin', value: 10, color: '#E38627' },
+                { title: 'Ether', value: 15, color: '#C13C37' },
+                { title: 'Polkadot', value: 35, color: '#6A2135' },
+              ]}
+
+              label={(labelRenderProps: LabelRenderProps) =>
+                number | string | React.ReactElement | undefined | null
+  }
+
+
+
+              // label={({ dataEntry }) => `${Math.round(dataEntry.percentage)} %`}
+              // label={({ dataEntry }) => dataEntry.value}
+            />
+
           <table class="centered" id="rows-alerts">
             <thead>
               <tr>
                 <th>Coin</th>
                 <th>Quantity</th>
                 <th>Value</th>
-                <th>Delete</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              {userData &&
+              {userData && coinData &&
                 userData.coins
-                  .sort((a, b) => b.quantity - a.quantity)
+                  .sort((a, b) => b.coin_id - a.coin_id) //cannot sort by value?
                   .map((coin) => {
                     return (
                       <>
@@ -146,7 +171,7 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
                               coin.coin_id.slice(1)}
                           </td>
                           <td>{coin.quantity.toLocaleString()}</td>
-                          <td>$</td>
+                          <td>${(coin.quantity * coinInPortfolio(coin.coin_id)).toLocaleString()}</td>
                           <td>
                             <span
                               style={{ cursor: 'pointer' }}
