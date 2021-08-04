@@ -2,16 +2,20 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import M from 'materialize-css';
 import '../styles/Portfolio.css';
-import { PieChart } from 'react-minimal-pie-chart';
+import Graph from '../components/Chart';
+
+
 
 const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
   const selectRef = useRef();
 
   console.log(userData);
+  console.log('coinData', coinData);
 
   const [portfolioData, setPortfolioData] = useState({
     cryptocurrency: 'bitcoin',
     quantity: '',
+    value: ''
   });
 
   useEffect(() => {
@@ -23,12 +27,15 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
   const submit = async (e) => {
     e.preventDefault();
     try {
+      const searchedCoin = coinData.find((coin) => coin.id === portfolioData.cryptocurrency);
       const result = await axios.post(
         'https://treasure-backend.herokuapp.com/coins',
         {
           user_id: 1,
           coin_id: portfolioData.cryptocurrency,
           quantity: portfolioData.quantity,
+          coin_value: searchedCoin.current_price,
+          value: portfolioData.quantity * searchedCoin.current_price
         }
       );
 
@@ -79,6 +86,12 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
 
       <div className="row">
         <div className="col s6">
+
+          <div className="chart">
+            <Graph data={portfolioData}/> //but I do not have the value of the coins
+          </div>
+
+
           <form onSubmit={submit}>
             <h5>Add a coin for your Portfolio:</h5>
             <div className="row">
@@ -132,22 +145,7 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
         <div className="col s6">
           <h5>Your Portfolio:</h5>
 
-          <PieChart
-              data={[
-                { title: 'Bitcoin', value: 10, color: '#E38627' },
-                { title: 'Ether', value: 15, color: '#C13C37' },
-                { title: 'Polkadot', value: 35, color: '#6A2135' },
-              ]}
-
-              // label={(labelRenderProps: LabelRenderProps) =>
-              //   number | string | React.ReactElement | undefined | null
-  // }
-
-
-
-              // label={({ dataEntry }) => `${Math.round(dataEntry.percentage)} %`}
-              // label={({ dataEntry }) => dataEntry.value}
-            />
+         
 
           <table class="centered" id="rows-alerts">
             <thead>
@@ -161,7 +159,7 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
             <tbody>
               {userData && coinData &&
                 userData.coins
-                  .sort((a, b) => b.coin_id - a.coin_id) //cannot sort by value?
+                  .sort((a, b) => b.value - a.value) //cannot sort by value?
                   .map((coin) => {
                     return (
                       <>
@@ -171,7 +169,7 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
                               coin.coin_id.slice(1)}
                           </td>
                           <td>{coin.quantity.toLocaleString()}</td>
-                          <td>${(coin.quantity * coinInPortfolio(coin.coin_id)).toLocaleString()}</td>
+                          <td>${(coin.quantity * coinInPortfolio(coin.coin_id)).toLocaleString()}{}</td>
                           <td>
                             <span
                               style={{ cursor: 'pointer' }}
@@ -185,6 +183,12 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
                       </>
                     );
                   })}
+                  
+                    <tr>
+                        <th style={{ textAlign: "center" }} colspan="2">TOTAL</th>
+                        <td>${userData.coins.reduce((acc, val) => acc + val.value , 0).toLocaleString()}</td>
+                    </tr>
+                   
             </tbody>
           </table>
         </div>
