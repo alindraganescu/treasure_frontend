@@ -30,7 +30,7 @@ const Alerts = ({ coinData, onRefreshUserData, userData }) => {
             .find((coin) => coin.id === alertsData.cryptocurrency)
             .symbol.toUpperCase(),
           price: alertsData.trigger_value,
-          direction: 'above',
+          direction: alertsData.trigger_value > coinData.current_price? 'above' : 'below', //logic added to check
           user_id: 1,
           coin_id: alertsData.cryptocurrency,
         }

@@ -199,7 +199,9 @@ function App() {
                   <div class="indeterminate"></div>
                 </div>
               ) : (
-                <SmallNews newsData={newsData.results} />
+                <SmallNews newsData={newsData}
+                  setNewsPage={setNewsPage}
+                  newsPage={newsPage} />
               )}
             </Route>
             <Route path="/*">

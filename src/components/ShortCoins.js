@@ -1,12 +1,31 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../styles/ShortCoins.css';
 import { NavLink } from 'react-router-dom';
 
-const ShortCoins = ({ coinData }) => {
-  console.log(coinData);
+const perPage = 20;
 
-  const beginning = 0;
-  const end = 20;
+const ShortCoins = ({ coinData }) => {
+  
+  
+    const [pagination, setPagination] = useState({
+      start: 0,
+      end: perPage
+    });
+  
+    const handlePrev = () => {
+      if (pagination.start - perPage >= 0) setPagination({
+        start: pagination.start - perPage,
+        end: pagination.end === perPage ? perPage : pagination.end - perPage
+      });
+    }
+  
+    const handleNext = () => {
+      if (pagination.start + perPage < coinData.length) setPagination({
+        start: pagination.start + perPage,
+        end: pagination.end === coinData.length ? pagination.end : pagination.end + perPage
+      });
+    }
+  
 
   return (
     <div className="z-depth-2 short-coins">
@@ -22,11 +41,11 @@ const ShortCoins = ({ coinData }) => {
           </tr>
         </thead>
         <tbody>
-          {coinData.slice(beginning, end).map((coin, index) => {
+          {coinData.slice(pagination.start, pagination.end).map((coin, index) => {
             return (
               <>
                 <tr key={index}>
-                  <td>{index + 1}</td>
+                  <td>{index + 1 + pagination.start}</td>
                   <td>
                     <img
                       src={coin.image}
@@ -53,6 +72,34 @@ const ShortCoins = ({ coinData }) => {
           })}
         </tbody>
       </table>
+
+      <div className="row parent-buttons">
+        <div className="child-buttons">
+          {coinData && (
+            <button
+              className="btn z-depth-2"
+              id="white_equal_size_button"
+              onClick={handlePrev}
+            >
+              <i class="material-icons left">navigate_before</i>
+              Previous
+            </button>
+          )}
+        </div>
+        <div className="child-buttons">
+          {coinData && (
+            <buton
+              className="btn z-depth-2"
+              id="white_equal_size_button"
+              onClick={handleNext}
+            >
+              <i className="material-icons right">navigate_next</i>
+              Next
+            </buton>
+          )}
+        </div>
+      </div>
+
     </div>
   );
 };
