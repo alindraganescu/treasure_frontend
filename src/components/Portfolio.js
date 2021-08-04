@@ -28,6 +28,7 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
     e.preventDefault();
     try {
       const searchedCoin = coinData.find((coin) => coin.id === portfolioData.cryptocurrency);
+      // setPortfolioData({ ...portfolioData, value: portfolioData.quantity * searchedCoin.current_price });
       const result = await axios.post(
         'https://treasure-backend.herokuapp.com/coins',
         {
@@ -88,9 +89,8 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
         <div className="col s6">
 
           <div className="chart">
-            <Graph data={portfolioData}/> //but I do not have the value of the coins
+            <Graph userData={userData.coins}/>
           </div>
-
 
           <form onSubmit={submit}>
             <h5>Add a coin for your Portfolio:</h5>
@@ -182,11 +182,12 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
                         </tr>
                       </>
                     );
-                  })}
-                  
+                  }
+                  )
+              }
                     <tr>
                         <th style={{ textAlign: "center" }} colspan="2">TOTAL</th>
-                        <td>${userData.coins.reduce((acc, val) => acc + val.value , 0).toLocaleString()}</td>
+                        <td>${userData && userData.coins.reduce((acc, val) => acc + val.value , 0).toLocaleString()}</td>
                     </tr>
                    
             </tbody>
