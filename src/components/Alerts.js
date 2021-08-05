@@ -7,7 +7,7 @@ const Alerts = ({ coinData, onRefreshUserData, userData }) => {
   const selectRef = useRef();
 
   console.log(userData);
-  // console.log(coinData);
+  console.log(coinData);
 
   const [alertsData, setAlertsData] = useState({
     cryptocurrency: '',
@@ -23,14 +23,13 @@ const Alerts = ({ coinData, onRefreshUserData, userData }) => {
   const submit = async (e) => {
     e.preventDefault();
     try {
+      const searchedCoin = coinData.find((coin) => coin.id === alertsData.cryptocurrency)
       const result = await axios.post(
         'https://treasure-backend.herokuapp.com/alerts',
         {
-          currency: coinData
-            .find((coin) => coin.id === alertsData.cryptocurrency)
-            .symbol.toUpperCase(),
+          currency: searchedCoin.symbol.toUpperCase(),
           price: alertsData.trigger_value,
-          direction: (alertsData.trigger_value >= coinData.current_price ? 'above' : 'below'), //logic added to check
+          direction: alertsData.trigger_value >= searchedCoin.current_price ? 'above' : 'below', //logic added to check
           user_id: 1,
           coin_id: alertsData.cryptocurrency,
         }
@@ -43,7 +42,7 @@ const Alerts = ({ coinData, onRefreshUserData, userData }) => {
       }
       e.target.reset();
       setAlertsData({
-        cryptocurrency: '',
+        cryptocurrency: 'bitcoin',
         trigger_value: '',
       });
     } catch (e) {

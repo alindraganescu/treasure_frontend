@@ -7,25 +7,25 @@ const Graph = ({userData}) => {
   // console.log('Graph');
   // console.log(userData);
   // console.log(colors);
-  const chartData = userData.map((coin, index) => {
-    const coinData = {title: coin.coin_id, value: coin.value.toLocaleString(), color: colors[index].color}
+  const chartData = userData.coins.map((coin, index) => {
+    const coinData = {title: coin.coin_id, value: Math.floor(coin.value), color: colors[index].color}
     return coinData
   })
-  console.log(chartData)
+  // console.log(chartData)
   return (
     <div>
-    {/* {userData &&
+    {userData &&
       <PieChart
-//         data={[
-//           { title: 'One', value: 10, color: '#E38627' },
-//           { title: 'Two', value: 15, color: '#C13C37' },
-//           { title: 'Three', value: 20, color: '#6A2135' }
-//         ]}
+        // data={[
+        //   { title: 'ethereum', value: 40218, color: '#E38627' },
+        //   { title: 'bitcoin', value: 38882, color: '#C13C37' },
+        //   { title: 'cardano', value: 27400, color: '#6A2135' }
+        // ]}
 //         label={({ dataEntry }) => `${Math.round(dataEntry.percentage)} % ${dataEntry.title}`}
-            data = {chartData}
-            label={({ dataEntry }) => `${Math.round(dataEntry.percentage)} % ${dataEntry.title}`}
+            data={chartData}
+            
             // label={({ dataEntry }) => dataEntry.value}
-      />} */}
+      />}
     </div>
   );
 };

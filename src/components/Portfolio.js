@@ -3,14 +3,15 @@ import axios from 'axios';
 import M from 'materialize-css';
 import '../styles/Portfolio.css';
 import Graph from '../components/Chart';
+import colors from '../utils/Colors';
 
-
+console.log(colors);
 
 const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
   const selectRef = useRef();
 
-  console.log(userData);
-  console.log('coinData', coinData);
+  // console.log(userData);
+  // console.log('coinData', coinData);
 
   const [portfolioData, setPortfolioData] = useState({
     cryptocurrency: 'bitcoin',
@@ -89,7 +90,13 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
         <div className="col s6">
 
           <div className="chart">
-            <Graph userData={userData.coins}/>
+              {!userData ? (
+                <div class="progress">
+                  <div class="indeterminate"></div>
+                </div>
+              ) : (
+                <Graph userData={userData}/>
+              )}
           </div>
 
           <form onSubmit={submit}>
@@ -114,7 +121,7 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
                       );
                     })}
                 </select>
-                {/* <label>Materialize Select</label> */}
+                
               </div>
             </div>
 
@@ -156,14 +163,15 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
                 <th>Action</th>
               </tr>
             </thead>
+
             <tbody>
               {userData && coinData &&
                 userData.coins
-                  .sort((a, b) => b.value - a.value) //cannot sort by value?
-                  .map((coin) => {
+                  .sort((a, b) => b.value - a.value)
+                  .map((coin, index) => {
                     return (
                       <>
-                        <tr key={coin.coin_id}>
+                        <tr key={index} style={{ color: colors[index].color}}>
                           <td>
                             {coin.coin_id.charAt(0).toUpperCase() +
                               coin.coin_id.slice(1)}
