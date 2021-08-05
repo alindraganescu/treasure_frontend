@@ -3,14 +3,15 @@ import axios from 'axios';
 import M from 'materialize-css';
 import '../styles/Portfolio.css';
 import Graph from '../components/Chart';
+import colors from '../utils/Colors';
 
-
+// console.log(colors);
 
 const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
   const selectRef = useRef();
 
-  console.log(userData);
-  console.log('coinData', coinData);
+  // console.log(userData);
+  // console.log('coinData', coinData);
 
   const [portfolioData, setPortfolioData] = useState({
     cryptocurrency: 'bitcoin',
@@ -28,6 +29,7 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
     e.preventDefault();
     try {
       const searchedCoin = coinData.find((coin) => coin.id === portfolioData.cryptocurrency);
+      // setPortfolioData({ ...portfolioData, value: portfolioData.quantity * searchedCoin.current_price });
       const result = await axios.post(
         'https://treasure-backend.herokuapp.com/coins',
         {
@@ -88,9 +90,14 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
         <div className="col s6">
 
           <div className="chart">
-            <Graph data={portfolioData}/> //but I do not have the value of the coins
+              {!userData ? (
+                <div class="progress">
+                  <div class="indeterminate"></div>
+                </div>
+              ) : (
+                <Graph userData={userData}/>
+              )}
           </div>
-
 
           <form onSubmit={submit}>
             <h5>Add a coin for your Portfolio:</h5>
@@ -114,7 +121,7 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
                       );
                     })}
                 </select>
-                {/* <label>Materialize Select</label> */}
+                
               </div>
             </div>
 
@@ -156,14 +163,15 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
                 <th>Action</th>
               </tr>
             </thead>
+
             <tbody>
               {userData && coinData &&
                 userData.coins
-                  .sort((a, b) => b.value - a.value) //cannot sort by value?
-                  .map((coin) => {
+                  .sort((a, b) => b.value - a.value)
+                  .map((coin, index) => {
                     return (
                       <>
-                        <tr key={coin.coin_id}>
+                        <tr key={index} style={{ color: colors[index].color}}>
                           <td>
                             {coin.coin_id.charAt(0).toUpperCase() +
                               coin.coin_id.slice(1)}
@@ -182,11 +190,12 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
                         </tr>
                       </>
                     );
-                  })}
-                  
+                  }
+                  )
+              }
                     <tr>
                         <th style={{ textAlign: "center" }} colspan="2">TOTAL</th>
-                        <td>${userData.coins.reduce((acc, val) => acc + val.value , 0).toLocaleString()}</td>
+                        <td>${userData && userData.coins.reduce((acc, val) => acc + val.value , 0).toLocaleString()}</td>
                     </tr>
                    
             </tbody>
