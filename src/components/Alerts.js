@@ -29,7 +29,7 @@ const Alerts = ({ coinData, onRefreshUserData, userData }) => {
         {
           currency: searchedCoin.symbol.toUpperCase(),
           price: alertsData.trigger_value,
-          direction: alertsData.trigger_value >= searchedCoin.current_price ? 'above' : 'below', //logic added to check
+          direction: alertsData.trigger_value >= searchedCoin.current_price ? 'above' : 'below',
           user_id: 1,
           coin_id: alertsData.cryptocurrency,
         }
@@ -45,6 +45,20 @@ const Alerts = ({ coinData, onRefreshUserData, userData }) => {
         cryptocurrency: 'bitcoin',
         trigger_value: '',
       });
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
+  const deleteCoin = async (alert_id) => {
+    try {
+      await axios.delete(
+        `https://treasure-backend.herokuapp.com/alerts/${alert_id}`
+      );
+
+      if (true) {
+        onRefreshUserData();
+      }
     } catch (e) {
       console.log(e.message);
     }
@@ -134,9 +148,9 @@ const Alerts = ({ coinData, onRefreshUserData, userData }) => {
                         </td>
                         <td>{alert.trigger_value.toLocaleString()}$</td>
                         <td>
-                          <a className="material-icons tiny delete">
+                          <span style={{ cursor: 'pointer' }} className="material-icons tiny delete" onClick={() => deleteCoin(alert.id)}>
                             delete_forever
-                          </a>
+                          </span>
                         </td>
                       </tr>
                     </>

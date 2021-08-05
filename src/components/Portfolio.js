@@ -5,7 +5,7 @@ import '../styles/Portfolio.css';
 import Graph from '../components/Chart';
 import colors from '../utils/Colors';
 
-console.log(colors);
+// console.log(colors);
 
 const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
   const selectRef = useRef();

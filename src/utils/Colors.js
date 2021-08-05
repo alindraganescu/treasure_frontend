@@ -12,7 +12,7 @@ let colors = [
     color: '#50CB93'
   },
   {
-    color: '#6A2135'
+    color: '#F4EEE8'
   },
   {
     color: '#2C2E43'
@@ -39,7 +39,7 @@ let colors = [
     color: '#F21170'
   },
   {
-    color: '#F4EEE8'
+    color: '#6A2135'
   },
   {
     color: '#542E71'
