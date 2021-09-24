@@ -53,7 +53,7 @@ function App() {
   useEffect(() => {
     // setIsLoading(true);
     axios
-      .get(`http://localhost:3001/home?newsPage=${newsPage}`)
+      .get(`https://treasure-backend.herokuapp.com/home?newsPage=${newsPage}`)
       .then((res) => {
         const { coinGeckoData, newsData } = res.data;
         console.log({ coinGeckoData });
