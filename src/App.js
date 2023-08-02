@@ -53,7 +53,8 @@ function App() {
   useEffect(() => {
     // setIsLoading(true);
     axios
-      .get(`https://treasure-backend.herokuapp.com/home?newsPage=${newsPage}`)
+      // .get(`https://treasure-backend.herokuapp.com/home?newsPage=${newsPage}`)
+      .get(`https://treasure-backend.vercel.app/home?newsPage=${newsPage}`)
       .then((res) => {
         const { coinGeckoData, newsData } = res.data;
         console.log({ coinGeckoData });
@@ -66,7 +67,8 @@ function App() {
 
   const fetchData = useCallback(async (query) => {
     const res = await axios.get(
-      `https://treasure-backend.herokuapp.com${query}`
+      // `https://treasure-backend.herokuapp.com${query}`
+      `https://treasure-backend.vercel.app${query}`
     );
     return res;
   }, []);
@@ -199,9 +201,11 @@ function App() {
                   <div class="indeterminate"></div>
                 </div>
               ) : (
-                <SmallNews newsData={newsData}
+                <SmallNews
+                  newsData={newsData}
                   setNewsPage={setNewsPage}
-                  newsPage={newsPage} />
+                  newsPage={newsPage}
+                />
               )}
             </Route>
             <Route path="/*">
