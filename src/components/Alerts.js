@@ -23,13 +23,19 @@ const Alerts = ({ coinData, onRefreshUserData, userData }) => {
   const submit = async (e) => {
     e.preventDefault();
     try {
-      const searchedCoin = coinData.find((coin) => coin.id === alertsData.cryptocurrency)
+      const searchedCoin = coinData.find(
+        (coin) => coin.id === alertsData.cryptocurrency
+      );
       const result = await axios.post(
-        'https://treasure-backend.herokuapp.com/alerts',
+        // 'https://treasure-backend.herokuapp.com/alerts',
+        'https://treasure-backend.vercel.app/alerts',
         {
           currency: searchedCoin.symbol.toUpperCase(),
           price: alertsData.trigger_value,
-          direction: alertsData.trigger_value >= searchedCoin.current_price ? 'above' : 'below',
+          direction:
+            alertsData.trigger_value >= searchedCoin.current_price
+              ? 'above'
+              : 'below',
           user_id: 1,
           coin_id: alertsData.cryptocurrency,
         }
@@ -53,7 +59,8 @@ const Alerts = ({ coinData, onRefreshUserData, userData }) => {
   const deleteCoin = async (alert_id) => {
     try {
       await axios.delete(
-        `https://treasure-backend.herokuapp.com/alerts/${alert_id}`
+        // `https://treasure-backend.herokuapp.com/alerts/${alert_id}`
+        `https://treasure-backend.vercel.app/alerts/${alert_id}`
       );
 
       if (true) {
@@ -148,7 +155,11 @@ const Alerts = ({ coinData, onRefreshUserData, userData }) => {
                         </td>
                         <td>{alert.trigger_value.toLocaleString()}$</td>
                         <td>
-                          <span style={{ cursor: 'pointer' }} className="material-icons tiny delete" onClick={() => deleteCoin(alert.id)}>
+                          <span
+                            style={{ cursor: 'pointer' }}
+                            className="material-icons tiny delete"
+                            onClick={() => deleteCoin(alert.id)}
+                          >
                             delete_forever
                           </span>
                         </td>

@@ -3,7 +3,7 @@ import axios from 'axios';
 const login = async (credentials) => {
   try {
     const { headers } = await axios.post(
-      'https://wbs-simple-auth.herokuapp.com',
+      'https://treasure-backend.vercel.app',
       {
         ...credentials,
       }

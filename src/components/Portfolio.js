@@ -16,7 +16,7 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
   const [portfolioData, setPortfolioData] = useState({
     cryptocurrency: 'bitcoin',
     quantity: '',
-    value: ''
+    value: '',
   });
 
   useEffect(() => {
@@ -28,16 +28,19 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
   const submit = async (e) => {
     e.preventDefault();
     try {
-      const searchedCoin = coinData.find((coin) => coin.id === portfolioData.cryptocurrency);
+      const searchedCoin = coinData.find(
+        (coin) => coin.id === portfolioData.cryptocurrency
+      );
       // setPortfolioData({ ...portfolioData, value: portfolioData.quantity * searchedCoin.current_price });
       const result = await axios.post(
-        'https://treasure-backend.herokuapp.com/coins',
+        // 'https://treasure-backend.herokuapp.com/coins',
+        'https://treasure-backend.vercel.app/coins',
         {
           user_id: 1,
           coin_id: portfolioData.cryptocurrency,
           quantity: portfolioData.quantity,
           coin_value: searchedCoin.current_price,
-          value: portfolioData.quantity * searchedCoin.current_price
+          value: portfolioData.quantity * searchedCoin.current_price,
         }
       );
 
@@ -57,7 +60,8 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
   const deleteCoin = async (coin_id) => {
     try {
       await axios.delete(
-        `https://treasure-backend.herokuapp.com/coins/${coin_id}/1`
+        // `https://treasure-backend.herokuapp.com/coins/${coin_id}/1`
+        `https://treasure-backend.vercel.app/coins/${coin_id}/1`
       );
 
       if (true) {
@@ -77,10 +81,10 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
 
   function coinInPortfolio(coinInDatabase) {
     let nameOfCoin = coinData.find((coin) => coin.id === coinInDatabase);
-    return nameOfCoin.current_price
+    return nameOfCoin.current_price;
   }
 
-    // console.log(coinInPortfolio('bitcoin'));
+  // console.log(coinInPortfolio('bitcoin'));
 
   return (
     <div className="z-depth-2" id="portfolio">
@@ -88,15 +92,14 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
 
       <div className="row">
         <div className="col s6">
-
           <div className="chart">
-              {!userData ? (
-                <div class="progress">
-                  <div class="indeterminate"></div>
-                </div>
-              ) : (
-                <Graph userData={userData}/>
-              )}
+            {!userData ? (
+              <div class="progress">
+                <div class="indeterminate"></div>
+              </div>
+            ) : (
+              <Graph userData={userData} />
+            )}
           </div>
 
           <form onSubmit={submit}>
@@ -121,7 +124,6 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
                       );
                     })}
                 </select>
-                
               </div>
             </div>
 
@@ -152,8 +154,6 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
         <div className="col s6">
           <h5>Your Portfolio:</h5>
 
-         
-
           <table class="centered" id="rows-alerts">
             <thead>
               <tr>
@@ -165,19 +165,26 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
             </thead>
 
             <tbody>
-              {userData && coinData &&
+              {userData &&
+                coinData &&
                 userData.coins
                   .sort((a, b) => b.value - a.value)
                   .map((coin, index) => {
                     return (
                       <>
-                        <tr key={index} style={{ color: colors[index].color}}>
+                        <tr key={index} style={{ color: colors[index].color }}>
                           <td>
                             {coin.coin_id.charAt(0).toUpperCase() +
                               coin.coin_id.slice(1)}
                           </td>
                           <td>{coin.quantity.toLocaleString()}</td>
-                          <td>${(coin.quantity * coinInPortfolio(coin.coin_id)).toLocaleString()}{}</td>
+                          <td>
+                            $
+                            {(
+                              coin.quantity * coinInPortfolio(coin.coin_id)
+                            ).toLocaleString()}
+                            {}
+                          </td>
                           <td>
                             <span
                               style={{ cursor: 'pointer' }}
@@ -190,14 +197,19 @@ const Portfolio = ({ coinData, onRefreshUserData, userData }) => {
                         </tr>
                       </>
                     );
-                  }
-                  )
-              }
-                    <tr>
-                        <th style={{ textAlign: "center" }} colspan="2">TOTAL</th>
-                        <td>${userData && userData.coins.reduce((acc, val) => acc + val.value , 0).toLocaleString()}</td>
-                    </tr>
-                   
+                  })}
+              <tr>
+                <th style={{ textAlign: 'center' }} colspan="2">
+                  TOTAL
+                </th>
+                <td>
+                  $
+                  {userData &&
+                    userData.coins
+                      .reduce((acc, val) => acc + val.value, 0)
+                      .toLocaleString()}
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
