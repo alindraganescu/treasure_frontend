@@ -6,7 +6,7 @@ import axios from 'axios';
 const Wiki = ({ onRefreshUserData, userData }) => {
   const [wikiData, setWikiData] = useState({
     link: '',
-    description: ''
+    description: '',
   });
 
   console.log(userData);
@@ -15,11 +15,12 @@ const Wiki = ({ onRefreshUserData, userData }) => {
     e.preventDefault();
     try {
       const result = await axios.post(
-        'https://treasure-backend.herokuapp.com/links',
+        // 'https://treasure-backend.herokuapp.com/links',
+        'https://treasure-backend.vercel.app/links',
         {
           user_id: 1,
           link: wikiData.link,
-          description: wikiData.description
+          description: wikiData.description,
         }
       );
 
@@ -29,7 +30,7 @@ const Wiki = ({ onRefreshUserData, userData }) => {
       e.target.reset();
       setWikiData({
         link: '',
-        description: ''
+        description: '',
       });
     } catch (e) {
       console.log(e.message);
@@ -39,7 +40,8 @@ const Wiki = ({ onRefreshUserData, userData }) => {
   const deleteLink = async (link_id) => {
     try {
       await axios.delete(
-        `https://treasure-backend.herokuapp.com/links/${link_id}/1`
+        // `https://treasure-backend.herokuapp.com/links/${link_id}/1`
+        `https://treasure-backend.vercel.app/links/${link_id}/1`
       );
 
       if (true) {
@@ -88,11 +90,7 @@ const Wiki = ({ onRefreshUserData, userData }) => {
                       </td>
                       <td>{site.description}</td>
                       <td>
-                        <span
-                          
-                          className="material-icons tiny delete"
-                          
-                        >
+                        <span className="material-icons tiny delete">
                           block
                         </span>
                       </td>
@@ -100,39 +98,38 @@ const Wiki = ({ onRefreshUserData, userData }) => {
                   </>
                 );
               })}
-              {userData.links && userData.links.map((item) => {
-          return(
-            <>
-            <tr key={item.id}>
-                      <td>
-                        <a
-                          href={item.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="small-shadow"
-                        >
-                          {item.description}
-                        </a>
-                      </td>
-                      <td>Favourite</td>
-                      <td>
-                        <span
-                          style={{ cursor: 'pointer' }}
-                          className="material-icons tiny delete"
-                          onClick={() => deleteLink(item.id)}
-                        >
-                          delete_forever
-                        </span>
-                      </td>
-                    </tr>
-            </>
-          )
-        })}
+              {userData.links &&
+                userData.links.map((item) => {
+                  return (
+                    <>
+                      <tr key={item.id}>
+                        <td>
+                          <a
+                            href={item.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="small-shadow"
+                          >
+                            {item.description}
+                          </a>
+                        </td>
+                        <td>Favourite</td>
+                        <td>
+                          <span
+                            style={{ cursor: 'pointer' }}
+                            className="material-icons tiny delete"
+                            onClick={() => deleteLink(item.id)}
+                          >
+                            delete_forever
+                          </span>
+                        </td>
+                      </tr>
+                    </>
+                  );
+                })}
             </tbody>
           </table>
         </div>
-
-     
 
         <div className="col s6">
           <h5>Insert a favourite link:</h5>
