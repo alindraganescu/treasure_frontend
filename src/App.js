@@ -50,17 +50,29 @@ function App() {
   // `http://localhost:3001/home?newsPage=${newsPage}`
   // `https://treasure-backend.herokuapp.com/receive-alert`
 
+  // useEffect(() => {
+  //   // setIsLoading(true);
+  //   axios
+  //     // .get(`https://treasure-backend.herokuapp.com/home?newsPage=${newsPage}`)
+  //     .get(`https://treasure-backend.vercel.app/home?newsPage=${newsPage}`)
+  //     .then((res) => {
+  //       const { coinGeckoData, newsData } = res.data;
+  //       console.log({ coinGeckoData });
+  //       // console.log({ newsData });
+  //       setCoinData(coinGeckoData);
+  //       setNewsData(newsData);
+  //     })
+  //     .catch((error) => console.log(error));
+  // }, [newsPage]);
+
   useEffect(() => {
-    // setIsLoading(true);
     axios
-      // .get(`https://treasure-backend.herokuapp.com/home?newsPage=${newsPage}`)
       .get(`https://treasure-backend.vercel.app/home?newsPage=${newsPage}`)
       .then((res) => {
-        const { coinGeckoData, newsData } = res.data;
-        console.log({ coinGeckoData });
-        // console.log({ newsData });
+        const { coinGeckoData, news, newsNextPage } = res.data;
         setCoinData(coinGeckoData);
-        setNewsData(newsData);
+        setNewsData(news);
+        setNewsPage(newsNextPage); // update newsPage with the nextPage string for future fetches
       })
       .catch((error) => console.log(error));
   }, [newsPage]);
